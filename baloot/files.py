@@ -1,14 +1,28 @@
 import pickle
 
 
-def save_object(object, file_location: str):
-    with open(file_location, "wb") as file_handler:
-        pickle.dump(object, file_handler)
+def _save_thing(thing, file_location: str) -> bool:
+    try:
+        with open(file_location, "wb") as file_handler:
+            pickle.dump(thing, file_handler)
+        return True
+    except:
+        return False
 
 
-def load_object(file_location: str):
-    with open(file_location, "rb") as file_handler:
-        return pickle.load(file_handler)
+def _load_thing(file_location: str):
+    try:
+        with open(file_location, "rb") as file_handler:
+            return pickle.load(file_handler)
+    except:
+        return None
+
+
+def funnel(file_location: str, thing: object | None = None):
+    if thing is None:
+        return _load_thing(file_location)
+
+    return _save_thing(thing=thing, file_location=file_location)
 
 
 def duplicate(from_location, to_location, **replacements):
