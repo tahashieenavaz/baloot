@@ -7,8 +7,8 @@ def acceleration_device():
         )
 
     _device = "cpu"
-    if torch.cuda.is_cuda_available():
+    if torch.cuda.is_available():
         _device = "cuda"
-    elif torch.mps.is_mps_available():
+    elif torch.mps.is_available():
         _device = "mps"
     return torch.device(_device)
