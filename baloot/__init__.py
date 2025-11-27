@@ -6,3 +6,4 @@ from .files import funnel
 from .seed import seed_python
 from .seed import seed_torch
 from .seed import seed_numpy
+from .seed import full_seed
