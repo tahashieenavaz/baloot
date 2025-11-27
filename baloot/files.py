@@ -25,12 +25,12 @@ def funnel(file_location: str, thing: object | None = None):
     return _save_thing(thing=thing, file_location=file_location)
 
 
-def duplicate(from_location, to_location, **replacements):
-    with open(from_location, "r") as f:
+def render_template(template_location, target_location, **replacements):
+    with open(template_location, "r") as f:
         content = f.read()
 
     for key, value in replacements.items():
         content = content.replace(f"%{key}%", value)
 
-    with open(to_location, "w") as f:
+    with open(target_location, "w") as f:
         f.write(content)

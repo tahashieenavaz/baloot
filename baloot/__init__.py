@@ -1,7 +1,7 @@
 from .torch import acceleration_device
 from .torch import parameter_count
 
-from .files import duplicate
+from .files import render_template
 from .files import funnel
 
 from .seed import seed_python
