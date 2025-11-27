@@ -1,4 +1,5 @@
 from .torch import acceleration_device
+from .torch import parameter_count
 
 from .files import duplicate
 from .files import funnel
