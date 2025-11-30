@@ -10,7 +10,7 @@ def _save_thing(thing, file_location: str) -> bool:
         return False
 
 
-def _load_thing(file_location: str):
+def _load_thing(file_location: str) -> object | None:
     try:
         with open(file_location, "rb") as file_handler:
             return pickle.load(file_handler)
