@@ -18,7 +18,7 @@ def _load_thing(file_location: str) -> object | None:
         return None
 
 
-def funnel(file_location: str, thing: object | None = None):
+def funnel(file_location: str, thing: object | None = None) -> bool | None | object:
     if thing is None:
         return _load_thing(file_location)
 
