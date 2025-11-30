@@ -25,7 +25,7 @@ def funnel(file_location: str, thing: object | None = None):
     return _save_thing(thing=thing, file_location=file_location)
 
 
-def render_template(template_location, target_location, **replacements):
+def render_template(template_location: str, target_location: str, **replacements):
     with open(template_location, "r") as f:
         content = f.read()
 
