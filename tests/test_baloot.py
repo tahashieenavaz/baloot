@@ -6,9 +6,6 @@ import pytest
 from helpers import _make_fake_torch
 
 
-FAKE_TORCH = _make_fake_torch()
-sys.modules["torch"] = FAKE_TORCH
-
 from baloot import (
     acceleration_device,
     funnel,

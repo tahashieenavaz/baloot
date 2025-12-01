@@ -1,5 +1,6 @@
 import types
 import pytest
+import sys
 
 
 def _make_fake_torch(cuda_available: bool = False, mps_available: bool = False):
@@ -40,3 +41,7 @@ def _reset_fake_torch():
     FAKE_TORCH.backends.cudnn.benchmark = True
     FAKE_TORCH.cuda.is_available = lambda: False
     FAKE_TORCH.mps.is_available = lambda: False
+
+
+FAKE_TORCH = _make_fake_torch()
+sys.modules["torch"] = FAKE_TORCH
