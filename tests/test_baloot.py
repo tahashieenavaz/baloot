@@ -3,7 +3,7 @@ import random
 import sys
 import numpy
 import pytest
-
+from helpers import FAKE_TORCH
 
 from baloot import (
     acceleration_device,
