@@ -22,16 +22,6 @@ from baloot import (
 import baloot.seed as seed_module
 
 
-@pytest.fixture(autouse=True)
-def _reset_fake_torch():
-    FAKE_TORCH.manual_seed_calls = []
-    FAKE_TORCH.cuda.manual_seed_all_calls = []
-    FAKE_TORCH.backends.cudnn.deterministic = False
-    FAKE_TORCH.backends.cudnn.benchmark = True
-    FAKE_TORCH.cuda.is_available = lambda: False
-    FAKE_TORCH.mps.is_available = lambda: False
-
-
 def test_parameter_count_counts_trainable_parameters():
     class Param:
         def __init__(self, count, requires_grad):
