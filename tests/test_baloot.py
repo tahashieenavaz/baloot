@@ -3,7 +3,6 @@ import random
 import sys
 import numpy
 import pytest
-from helpers import _make_fake_torch
 
 
 from baloot import (
