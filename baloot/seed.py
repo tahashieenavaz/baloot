@@ -32,10 +32,7 @@ def seed_gymnasium(seed: int, environment: object):
         pass
 
 
-def seed_everything(seed: int, gym_environment: object | None = None):
+def seed_everything(seed: int):
     seed_python(seed)
     seed_numpy(seed)
     seed_torch(seed)
-
-    if gym_environment is not None:
-        seed_gymnasium(seed, gym_environment)
