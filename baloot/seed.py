@@ -32,6 +32,14 @@ def seed_gymnasium(seed: int, environment: object):
         pass
 
 
+def seed_gym(seed: int, environment, seed_observation: bool = False):
+    if hasattr(environment, "action_space"):
+        environment.action_space.seed(seed)
+
+    if hasattr(environment, "observation_space") and seed_observation:
+        environment.observation_space.seed(seed)
+
+
 def seed_everything(seed: int):
     seed_python(seed)
     seed_numpy(seed)
