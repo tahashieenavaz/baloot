@@ -28,16 +28,12 @@ def funnel(file_location: str, thing: object | None = None) -> bool | None | obj
 def render_template(
     template_location: str, target_location: str, **replacements
 ) -> bool:
-    try:
-        with open(template_location, "r") as f:
-            content = f.read()
+    with open(template_location, "r") as f:
+        content = f.read()
 
-        for key, value in replacements.items():
-            content = content.replace(f"%{key}%", value)
+    for key, value in replacements.items():
+        content = content.replace(f"%{key}%", value)
 
-        with open(target_location, "w") as f:
-            f.write(content)
+    with open(target_location, "w") as f:
+        f.write(content)
 
-        return True
-    except:
-        return False
