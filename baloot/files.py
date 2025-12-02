@@ -32,8 +32,7 @@ def render_template(
         content = f.read()
 
     for key, value in replacements.items():
-        content = content.replace(f"%{key}%", value)
+        content = content.replace(f"%{key}%", str(value))
 
     with open(target_location, "w") as f:
         f.write(content)
-
