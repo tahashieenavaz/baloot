@@ -26,11 +26,6 @@ def test_parameter_count_only_trainable():
     assert baloot.parameter_count(model) == 13
 
 
-# ----------------------------------
-# acceleration_device
-# ----------------------------------
-
-
 def test_acceleration_device_cpu(monkeypatch):
     fake_torch = types.SimpleNamespace(
         cuda=types.SimpleNamespace(is_available=lambda: False),
