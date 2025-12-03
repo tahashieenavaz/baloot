@@ -1,24 +1,25 @@
 import pickle
+from typing import Any
 
 
-def _save_thing(thing, file_location: str) -> bool:
+def _save_thing(thing: Any, file_location: str) -> bool:
     try:
-        with open(file_location, "wb") as file_handler:
-            pickle.dump(thing, file_handler)
+        with open(file_location, "wb") as file:
+            pickle.dump(thing, file)
         return True
-    except:
+    except (OSError, pickle.PickleError, AttributeError):
         return False
 
 
-def _load_thing(file_location: str) -> object | None:
+def _load_thing(file_location: str) -> Any | None:
     try:
-        with open(file_location, "rb") as file_handler:
-            return pickle.load(file_handler)
-    except:
+        with open(file_location, "rb") as file:
+            return pickle.load(file)
+    except (OSError, pickle.PickleError, EOFError):
         return None
 
 
-def funnel(file_location: str, thing: object | None = None) -> bool | None | object:
+def funnel(file_location: str, thing: Any | None = None) -> bool | None | Any:
     if thing is None:
         return _load_thing(file_location)
 
@@ -26,13 +27,18 @@ def funnel(file_location: str, thing: object | None = None) -> bool | None | obj
 
 
 def render_template(
-    template_location: str, target_location: str, **replacements
+    template_location: str, target_location: str, **replacements: Any
 ) -> bool:
-    with open(template_location, "r") as f:
-        content = f.read()
+    try:
+        with open(template_location, "r", encoding="utf-8") as f:
+            content = f.read()
 
-    for key, value in replacements.items():
-        content = content.replace(f"%{key}%", str(value))
+        for key, value in replacements.items():
+            content = content.replace(f"%{key}%", str(value))
 
-    with open(target_location, "w") as f:
-        f.write(content)
+        with open(target_location, "w", encoding="utf-8") as f:
+            f.write(content)
+
+        return True
+    except OSError:
+        return False
