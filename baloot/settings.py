@@ -21,5 +21,10 @@ def settings(key: str, default: Any = None) -> Any:
     return current
 
 
+def reload_settings() -> None:
+    global _settings_cache
+    _settings_cache = None
+
+
 def get_settings(*args, **kwargs):
     return settings(*args, **kwargs)
