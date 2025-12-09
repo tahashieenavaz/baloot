@@ -1,4 +1,6 @@
-from typing import Any
+import torch
+import random
+from typing import Any, Type, List
 
 
 def parameter_count(model: Any) -> int:
@@ -25,3 +27,15 @@ def acceleration_device():
         return torch.device("mps")
 
     return torch.device("cpu")
+
+
+def replace_modules_from_pool(
+    module, needle: torch.nn.Module, candidates: List[Type[torch.nn.Module]]
+):
+    for name, child in module.named_children():
+        if isinstance(child, needle):
+            new_activation = random.choice(candidates)
+            setattr(module, name, new_activation())
+        else:
+            replace_modules(child, needle, candidates)
+    return module
