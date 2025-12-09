@@ -37,5 +37,5 @@ def replace_modules_from_pool(
             new_activation = random.choice(candidates)
             setattr(module, name, new_activation())
         else:
-            replace_modules(child, needle, candidates)
+            replace_modules_from_pool(child, needle, candidates)
     return module
