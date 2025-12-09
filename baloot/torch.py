@@ -1,6 +1,6 @@
 import torch
 import random
-from typing import Any, Type, List
+from typing import Any, Type, List, Union, Tuple
 
 
 def parameter_count(model: Any) -> int:
@@ -29,13 +29,16 @@ def acceleration_device():
     return torch.device("cpu")
 
 
-def replace_modules_from_pool(
-    module, needle: torch.nn.Module, candidates: List[Type[torch.nn.Module]]
-):
-    for name, child in module.named_children():
-        if isinstance(child, needle):
-            new_activation = random.choice(candidates)
-            setattr(module, name, new_activation())
+def randomly_replace_layers(
+    model: torch.nn.Module,
+    target_type: Union[Type[torch.nn.Module], Tuple[Type[torch.nn.Module], ...]],
+    replacement_pool: List[Type[torch.nn.Module]],
+) -> torch.nn.Module:
+    for name, child in model.named_children():
+        if isinstance(child, target_type):
+            NewLayerClass = random.choice(replacement_pool)
+            setattr(model, name, NewLayerClass())
         else:
-            replace_modules_from_pool(child, needle, candidates)
-    return module
+            randomly_replace_layers(child, target_type, replacement_pool)
+
+    return model
