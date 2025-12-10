@@ -37,7 +37,7 @@ def plot(
             axis.set_xlabel(xtitle, fontsize=12, labelpad=10, color="#555")
 
         if ytitle:
-            axis.set_ylabel(ylabel, fontsize=12, labelpad=10, color="#555")
+            axis.set_ylabel(ytitle, fontsize=12, labelpad=10, color="#555")
 
         axis.spines["top"].set_visible(False)
         axis.spines["right"].set_visible(False)
