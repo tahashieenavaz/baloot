@@ -44,5 +44,7 @@ def plot(
         axis.spines["left"].set_color("#888888")
         axis.spines["bottom"].set_color("#888888")
 
+        axis.tick_params(axis="both", which="major", labelsize=10, colors="#555555")
+
     plt.plot(x, y)
     plt.show()
