@@ -51,5 +51,11 @@ def plot(
 
         plt.tight_layout()
 
+        if output_path:
+            plt.savefig(output_path, bbox_inches="tight")
+            print(f"Chart saved to {output_path}")
+        else:
+            plt.show()
+
     plt.plot(x, y)
     plt.show()
