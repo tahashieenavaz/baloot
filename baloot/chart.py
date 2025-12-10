@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import numpy
+from typing import Union, List
 
 
 def plot(x, y=None):
