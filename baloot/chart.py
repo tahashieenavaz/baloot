@@ -49,5 +49,7 @@ def plot(
             True, which="major", axis="both", linestyle="--", alpha=0.6, color="#CCCCCC"
         )
 
+        plt.tight_layout()
+
     plt.plot(x, y)
     plt.show()
