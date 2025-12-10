@@ -57,5 +57,4 @@ def plot(
         else:
             plt.show()
 
-    plt.plot(x, y)
-    plt.show()
+    return figure, axis
