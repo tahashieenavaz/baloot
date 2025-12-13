@@ -42,4 +42,3 @@ def randomly_replace_layers(
             randomly_replace_layers(child, target_type, replacement_pool)
 
     return model
-
