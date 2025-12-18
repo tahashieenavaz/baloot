@@ -1,2 +1,2 @@
+from .common import Reshape
 from .patch import PatchEmbedding
-from .patch import Reshape
