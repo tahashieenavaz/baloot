@@ -8,7 +8,6 @@ PlotInputDataType = Union[List[float], numpy.ndarray]
 def spring(
     x: PlotInputDataType,
     y: Optional[PlotInputDataType] = None,
-    figsize: Tuple[int, int] = (10, 6),
     title: Optional[str] = None,
     xtitle: Optional[str] = None,
     ytitle: Optional[str] = None,
