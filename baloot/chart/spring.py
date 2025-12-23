@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy
-from typing import Union, List, Optional, Tuple
+from typing import Union, List, Optional
 
 PlotInputDataType = Union[List[float], numpy.ndarray]
 
