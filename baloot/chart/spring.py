@@ -5,7 +5,7 @@ from typing import Union, List, Optional, Tuple
 PlotInputDataType = Union[List[float], numpy.ndarray]
 
 
-def plot(
+def spring(
     x: PlotInputDataType,
     y: Optional[PlotInputDataType] = None,
     figsize: Tuple[int, int] = (10, 6),
