@@ -1,88 +1,109 @@
 # Baloot
 
-Small, focused helpers I reuse across experiments and projects. Everything is pure Python, has no runtime dependencies, and is geared toward developer ergonomics.
+Small, focused Python helpers for experiments and day-to-day developer workflows. The package is pure Python, has no required runtime dependencies, and keeps the API flat so you can import most helpers directly from `baloot`.
+
+## Overview
+
+- Lightweight utilities for seeding, file helpers, settings, Torch ergonomics, plotting, and small modules.
+- Optional integrations: install the libraries you actually use (e.g., `torch`, `numpy`, `matplotlib`).
+- A simple, readable API surface intended for quick reuse in scripts and research code.
 
 ## Installation
 
-- From PyPI: `pip install baloot`
-- Local editable: `pip install -e .`
+- From PyPI:
+  ```bash
+  pip install baloot
+  ```
+- Local editable install:
+  ```bash
+  pip install -e .
+  ```
 
-## Quick start
+Requires Python 3.9+.
+
+Optional dependencies (install as needed):
+- `torch` for `baloot.torch`, `baloot.modules`, and `seed_torch` / `seed_everything`.
+- `numpy` for `seed_numpy` and charting utilities.
+- `matplotlib` for `baloot.chart` utilities.
+
+## Usage
+
+Quick start:
 
 ```python
 from baloot import acceleration_device, funnel, seed_everything, settings
 
-device = acceleration_device()  # torch: picks cuda -> mps -> cpu
-seed_everything(42)             # python, numpy, torch all aligned
+device = acceleration_device()  # torch: cuda -> mps -> cpu
+seed_everything(42)             # python, numpy, torch aligned
 funnel("model.pkl", model)      # save a pickled object
 print(settings("training.batch_size", default=32))
 ```
 
-## API reference
+### API reference (all implemented methods)
 
-All functions are imported from the top-level `baloot` package for convenience.
+Top-level re-exports (`from baloot import ...`):
+- `acceleration_device()` -> `torch.device`
+- `parameter_count(model)` -> `int`
+- `ksg_mi(x, y, k=3)` -> `torch.Tensor`
+- `randomly_replace_layers(model, target_type, replacement_pool)` -> `torch.nn.Module`
+- `render_template(template_location, target_location, **replacements)` -> `bool`
+- `funnel(file_location, thing=None)` -> `bool | Any | None`
+- `seed_python(seed)` -> `None`
+- `seed_torch(seed)` -> `None`
+- `seed_numpy(seed)` -> `None`
+- `seed_everything(seed)` -> `None`
+- `seed_gym(seed, environment, seed_observation=False)` -> `None`
+- `seed_gymnasium(seed, environment)` -> `None`
+- `settings(key, default=None)` -> `Any`
+- `get_settings(*args, **kwargs)` -> `Any`
+- `reload_settings()` -> `None`
 
-### Torch helpers (`baloot.torch`)
+Files & utilities (organized by module):
 
-- `parameter_count(model) -> int`: Counts parameters with `requires_grad=True`. Useful for reporting trainable footprint.
-- `acceleration_device() -> torch.device`: Picks the best available accelerator in order `cuda`, `mps`, then `cpu`. Raises `ImportError` if `torch` is missing.
+`baloot.files`
+- `_save_thing(thing, file_location)` -> `bool`: Pickle and save an object.
+- `_load_thing(file_location)` -> `Any | None`: Load a pickled object.
+- `funnel(file_location, thing=None)` -> `bool | Any | None`: Save when `thing` is provided; load when `thing=None`.
+- `render_template(template_location, target_location, **replacements)` -> `bool`: Replace `%key%` placeholders in a template.
 
-### File helpers (`baloot.files`)
+`baloot.seed`
+- `seed_torch(seed)` -> `None`: Seed CPU/CUDA and set deterministic cuDNN flags.
+- `seed_numpy(seed)` -> `None`: Seed NumPy RNG.
+- `seed_python(seed)` -> `None`: Seed Python `random`.
+- `_try_seed_space(space, seed)` -> `None`: Internal helper for Gym-style spaces.
+- `seed_gymnasium(seed, environment)` -> `None`: Seed Gymnasium env, action space, and observation space.
+- `seed_gym(seed, environment, seed_observation=False)` -> `None`: Seed classic Gym action space (+ optional observation space).
+- `seed_everything(seed)` -> `None`: Call Python, NumPy, and Torch seeders.
 
-- `funnel(file_location, thing=None) -> Any | bool | None`: Two-way utility for pickled artifacts. Pass an object to save it (`True` on success); pass `thing=None` to load (`None` on failure).
-- `render_template(template_location, target_location, **replacements) -> bool`: Lightweight string substitution. Replaces `%key%` placeholders in the template and writes the rendered file. Returns `True` on success, `False` on I/O errors.
-- `_save_thing(thing, file_location) -> bool` and `_load_thing(file_location) -> Any | None`: Internal helpers backing `funnel`; exposed for completeness but intended for private use.
+`baloot.settings`
+- `settings(key, default=None)` -> `Any`: Dotted-path lookup in `settings.json` from the working directory.
+- `reload_settings()` -> `None`: Clear the settings cache.
+- `get_settings(*args, **kwargs)` -> `Any`: Alias for `settings`.
 
-### Seeding helpers (`baloot.seed`)
+`baloot.torch`
+- `parameter_count(model)` -> `int`: Count trainable parameters (`requires_grad=True`).
+- `acceleration_device()` -> `torch.device`: Pick `cuda`, `mps`, then `cpu`.
+- `randomly_replace_layers(model, target_type, replacement_pool)` -> `torch.nn.Module`: Recursively swap layers by type.
+- `ksg_mi(x, y, k=3)` -> `torch.Tensor`: Kraskov-Stoegbauer-Grassberger MI estimate.
 
-- `seed_python(seed: int) -> None`: Seeds Python’s `random`.
-- `seed_numpy(seed: int) -> None`: Seeds NumPy RNG.
-- `seed_torch(seed: int) -> None`: Seeds torch (CPU + CUDA). Forces deterministic/cuDNN-safe settings.
-- `seed_gymnasium(seed: int, environment) -> None`: Seeds Gymnasium env via `reset(seed=...)` and its action/observation spaces when present.
-- `seed_gym(seed: int, environment, seed_observation: bool = False) -> None`: Seeds classic Gym action space; optionally observation space.
-- `seed_everything(seed: int) -> None`: Calls Python, NumPy, and torch seeders for a single consistent seed.
+`baloot.modules`
+- `Reshape.forward(x)` -> `torch.Tensor`: Reshape to `[B, -1, DIM]`.
+- `PatchEmbedding.__init__(channels, features, patch_width, patch_height, activate=False, activation=torch.nn.functional.gelu)`
+- `PatchEmbedding.forward(x)` -> `torch.Tensor`
 
-### Settings helpers (`baloot.settings`)
+`baloot.drl`
+- `linear_epsilon(step, k, start_eps, end_eps)` -> `float`: Linear epsilon schedule.
+- `cosine_epsilon(step, k, start_eps, end_eps)` -> `float`: Cosine epsilon schedule.
 
-- `settings(key: str, default=None) -> Any`: Loads `settings.json` once and provides dotted-path lookup (e.g., `training.lr`). Returns `default` when missing.
-- `reload_settings() -> None`: Clears the cached `settings.json` so the next call reloads it.
-- `get_settings(*args, **kwargs)`: Alias of `settings` for legacy imports.
+`baloot.chart`
+- `size(width, height=None)` -> `None`: Set figure size (square when `height=None`).
+- `dpi(resolution)` -> `None`: Set figure DPI.
+- `spring(x, y=None, title=None, xtitle=None, ytitle=None, output_path=None, color="#2E86C1", alpha=0.1)` -> `(figure, axis)`
 
-## Patterns and examples
+Notes:
+- `settings.json` is read from the current working directory. Call `reload_settings()` after edits.
+- Torch-dependent utilities require `torch` installed; chart utilities require `matplotlib` and `numpy`.
 
-- **Save & load artifacts**:
+## Copyright
 
-  ```python
-  from baloot import funnel
-
-  funnel("checkpoints/run1.pkl", model_state)  # save
-  restored = funnel("checkpoints/run1.pkl")    # load
-  ```
-
-- **Render simple templates**:
-
-  ```python
-  from baloot import render_template
-
-  render_template(
-      "templates/train.sh.tpl",
-      "scripts/train.sh",
-      run_name="exp_042",
-      lr=3e-4,
-  )
-  ```
-
-- **Control reproducibility end-to-end**:
-
-  ```python
-  from baloot import seed_everything, seed_gymnasium
-
-  seed_everything(1337)
-  env = make_env()
-  seed_gymnasium(1337, env)
-  ```
-
-## Notes
-
-- `settings.json` is expected in the working directory; use `reload_settings()` after edits.
-- Torch-dependent utilities require `torch` installed; everything else works without it.
+MIT License. Copyright (c) 2025 Taha Shieenavaz. See `LICENSE`.
