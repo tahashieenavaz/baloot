@@ -1,2 +1,2 @@
 from .Reshape import Reshape
-from .patch import PatchEmbedding
+from .PatchEmbedding import PatchEmbedding
