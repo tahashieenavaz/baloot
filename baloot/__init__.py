@@ -15,5 +15,3 @@ from .seed import seed_gym, seed_gymnasium
 from .settings import settings
 from .settings import get_settings
 from .settings import reload_settings
-
-from .chart import plot
