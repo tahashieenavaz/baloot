@@ -1,25 +1,7 @@
-import torch
-import numpy
-import random
-
-
-def seed_torch(seed: int) -> None:
-    seed = int(seed)
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-
-
-def seed_numpy(seed: int) -> None:
-    seed = int(seed)
-    numpy.random.seed(seed)
-
-
-def seed_python(seed: int) -> None:
-    seed = int(seed)
-    random.seed(seed)
+from .seed_cuda import seed_cuda
+from .seed_numpy import seed_numpy
+from .seed_torch import seed_torch
+from .seed_python import seed_python
 
 
 def seed_everything(seed: int) -> None:
@@ -27,3 +9,4 @@ def seed_everything(seed: int) -> None:
     seed_python(seed)
     seed_numpy(seed)
     seed_torch(seed)
+    seed_cuda(seed)
