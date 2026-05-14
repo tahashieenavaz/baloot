@@ -4,9 +4,23 @@ from .seed_torch import seed_torch
 from .seed_python import seed_python
 
 
-def seed_everything(seed: int) -> None:
+def seed_everything(
+    seed: int,
+    python: bool = True,
+    numpy: bool = True,
+    torch: bool = True,
+    cuda: bool = True,
+) -> None:
     seed = int(seed)
-    seed_python(seed)
-    seed_numpy(seed)
-    seed_torch(seed)
-    seed_cuda(seed)
+
+    if python:
+        seed_python(seed)
+
+    if numpy:
+        seed_numpy(seed)
+
+    if torch:
+        seed_torch(seed)
+
+    if cuda:
+        seed_cuda(seed)
