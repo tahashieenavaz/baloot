@@ -1,0 +1,8 @@
+import torch
+from typing import List
+from .hard_update import hard_update
+
+
+def hard_update_all(*, sources: List[torch.nn.Module], targets: List[torch.nn.Module]):
+    for source, target in zip(sources, targets):
+        hard_update(source=source, target=target)
