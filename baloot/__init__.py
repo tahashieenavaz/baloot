@@ -8,3 +8,6 @@ from .seed import seed_python
 from .seed import seed_torch
 from .seed import seed_numpy
 from .seed import seed_everything
+from importlib.metadata import version
+
+__version__ = version("baloot")
