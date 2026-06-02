@@ -1,9 +1,10 @@
-import torch
+from baloot.helpers import load_torch
 
 
-def soft_update(
-    *, source: torch.nn.Module, target: torch.nn.Module, tau: float
-) -> None:
+def soft_update(*, source, target, tau: float) -> None:
+    torch = load_torch()
+    assert isinstance(source, torch.nn.Module)
+    assert isinstance(target, torch.nn.Module)
     for source_parameter, target_parameter in zip(
         source.parameters(), target.parameters()
     ):
