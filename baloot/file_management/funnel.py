@@ -1,8 +1,9 @@
-import pickle
 from typing import Any
+from baloot.helpers import load_pickle
 
 
 def _save_file(thing: Any, file_location: str) -> bool:
+    pickle = load_pickle()
     try:
         with open(file_location, "wb") as file:
             pickle.dump(thing, file)
@@ -12,6 +13,7 @@ def _save_file(thing: Any, file_location: str) -> bool:
 
 
 def _load_file(file_location: str) -> Any | None:
+    pickle = load_pickle()
     try:
         with open(file_location, "rb") as file:
             return pickle.load(file)
