@@ -1,13 +1,13 @@
-from .torch import acceleration_device
-from .torch import parameter_count
+from .device_management import acceleration_device
+from .parameters import parameter_count
 
 from .file_management import render_template
 from .file_management import funnel
 
-from .seed import seed_python
-from .seed import seed_torch
-from .seed import seed_numpy
-from .seed import seed_everything
+from .reproducibility import seed_python
+from .reproducibility import seed_torch
+from .reproducibility import seed_numpy
+from .reproducibility import seed_everything
 from importlib.metadata import version
 
 __version__ = version("baloot")

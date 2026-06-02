@@ -1,7 +1,7 @@
-import device_maganement
+import torch
 
 
-def parameter_count(model: device_maganement.nn.Module) -> int:
+def parameter_count(model: torch.nn.Module) -> int:
     return sum(
         parameter.numel()
         for parameter in model.parameters()
