@@ -1,7 +1,8 @@
-import torch
+from baloot.helpers import load_torch
 
 
-def acceleration_device(return_all=False):
+def acceleration_device(return_all: bool = False):
+    torch = load_torch()
     devices = []
 
     if torch.cuda.is_available():
