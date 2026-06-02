@@ -1,4 +1,9 @@
+from importlib.metadata import version
+
+__version__ = version("baloot")
+
 from .device_management import acceleration_device
+
 from .parameters import parameter_count
 
 from .file_management import render_template
@@ -14,6 +19,7 @@ from .triangular import arccot
 from .triangular import coth
 from .triangular import arccoth
 
-from importlib.metadata import version
-
-__version__ = version("baloot")
+from .reinforcement_learning import soft_update
+from .reinforcement_learning import soft_update_all
+from .reinforcement_learning import hard_update
+from .reinforcement_learning import hard_update_all
