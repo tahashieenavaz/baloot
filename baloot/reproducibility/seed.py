@@ -1,4 +1,4 @@
-from baloot.seed import seed_everything
+from .seed_everything import seed_everything
 
 
 def seed(*args, **kwargs) -> None:
