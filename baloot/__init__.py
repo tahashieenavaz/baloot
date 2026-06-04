@@ -23,3 +23,8 @@ from .reinforcement_learning import soft_update
 from .reinforcement_learning import soft_update_all
 from .reinforcement_learning import hard_update
 from .reinforcement_learning import hard_update_all
+
+from .tensors import shuffle
+
+from .constants import pi
+from .constants import e
