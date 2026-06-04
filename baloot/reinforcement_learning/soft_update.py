@@ -1,7 +1,8 @@
 from baloot.helpers import load_torch
+from baloot.typing import TorchModule
 
 
-def soft_update(*, source, target, tau: float) -> None:
+def soft_update(*, source: TorchModule, target: TorchModule, tau: float) -> None:
     torch = load_torch()
     assert isinstance(source, torch.nn.Module)
     assert isinstance(target, torch.nn.Module)
