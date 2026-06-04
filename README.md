@@ -57,7 +57,7 @@ import baloot
 
 assert baloot.seed == baloot.seed_everything
 
-baloot.seed(123456)
+baloot.seed(1234)
 ```
 
 Alternatively, you can seed different libraries separately.
