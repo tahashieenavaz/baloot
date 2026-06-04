@@ -50,6 +50,27 @@ print(baloot.golden)
 # tensor(1.6180)
 ```
 
+### Reproducibility
+
+```python
+import baloot
+
+assert baloot.seed == baloot.seed_everything
+baloot.seed(123456)
+```
+
+Alternatively, you can seed different libraries separately.
+
+```python
+import baloot
+
+baloot.seed_python(1)
+baloot.seed_numpy(2)
+baloot.seed_torch(3)
+baloot.seed_cuda(4)
+```
+
+
 ## Copyright
 
 MIT License. Copyright (c) 2025 Taha Shieenavaz. See `LICENSE`.
