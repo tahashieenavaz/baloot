@@ -71,6 +71,29 @@ baloot.seed_torch(3)
 baloot.seed_cuda(4)
 ```
 
+### File Management
+
+Saving data:
+
+```python
+import baloot
+
+data = {
+    "name": "John Doe",
+    "age": 222
+}
+
+baloot.funnel("data.json", data)
+```
+
+Later on you can load the data: 
+
+```python
+import baloot
+
+data = baloot.funnel("data.json")
+```
+
 
 ## Copyright
 
