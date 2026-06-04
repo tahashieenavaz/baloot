@@ -1,7 +1,5 @@
-from typing import Any
 from baloot.helpers import load_torch
-
-TorchTensor = Any
+from baloot.typing import TorchTensor
 
 
 def shuffle(x: TorchTensor, dim: int = -1) -> TorchTensor:
