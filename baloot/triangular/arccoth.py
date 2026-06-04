@@ -1,7 +1,8 @@
 from baloot.helpers import load_torch
+from baloot.typing import TorchTensor
 
 
-def arccoth(x):
+def arccoth(x: TorchTensor) -> TorchTensor:
     torch = load_torch()
     assert isinstance(
         x, torch.Tensor
