@@ -3,3 +3,6 @@ from .e import e
 from .ln2 import ln2
 from .ln10 import ln10
 from .golden import golden
+from .sqrt2 import sqrt2
+from .sqrt3 import sqrt3
+from .sqrt5 import sqrt5
