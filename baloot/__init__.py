@@ -28,3 +28,6 @@ from .tensors import shuffle
 
 from .constants import pi
 from .constants import e
+from .constants import ln2
+from .constants import ln10
+from .constants import golden
