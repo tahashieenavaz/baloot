@@ -1,7 +1,8 @@
 from baloot.helpers import load_torch
+from baloot.typing import TorchModule
 
 
-def parameter_count(model) -> int:
+def parameter_count(model: TorchModule) -> int:
     torch = load_torch()
 
     assert isinstance(model, torch.nn.Module)
