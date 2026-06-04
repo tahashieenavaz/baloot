@@ -21,11 +21,33 @@ pip install baloot
 ```python
 import baloot
 
-print(baloot.pi())
+print(baloot.pi)
 # tensor(3.1416)
 
-print(baloot.e())
+print(baloot.e)
 # tensor(2.7183)
+
+print(baloot.sqrt2)
+# tensor(1.4142)
+
+print(baloot.sqrt3)
+# tensor(1.7321)
+
+print(baloot.sqrt5)
+# tensor(2.2361)
+
+print(baloot.ln2)
+# tensor(0.6931)
+
+print(baloot.ln10)
+# tensor(2.3026)
+
+print(baloot.c)
+# tensor(299792458)
+assert baloot.c == baloot.light
+
+print(baloot.golden)
+# tensor(1.6180)
 ```
 
 ## Copyright
