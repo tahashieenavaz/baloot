@@ -56,6 +56,7 @@ print(baloot.golden)
 import baloot
 
 assert baloot.seed == baloot.seed_everything
+
 baloot.seed(123456)
 ```
 
