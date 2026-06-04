@@ -26,8 +26,27 @@ from .reinforcement_learning import hard_update_all
 
 from .tensors import shuffle
 
-from .constants import pi
-from .constants import e
-from .constants import ln2
-from .constants import ln10
-from .constants import golden
+
+def __getattr__(name):
+    if name == "pi":
+        from .constants import pi
+
+        return pi()
+    elif name == "e":
+        from .constants import e
+
+        return e()
+    elif name == "ln2":
+        from .constants import ln2
+
+        return ln2()
+    elif name == "ln10":
+        from .constants import ln10
+
+        return ln10()
+    elif name == "golden":
+        from .constants import golden
+
+        return golden()
+
+    raise AttributeError(name=name)
