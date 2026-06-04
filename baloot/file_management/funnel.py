@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from baloot.helpers import load_pickle
 
 
@@ -12,7 +12,7 @@ def _save_file(*, instance: Any, file_location: str) -> bool:
         return False
 
 
-def _load_file(*, file_location: str) -> Any | None:
+def _load_file(*, file_location: str) -> Any:
     pickle = load_pickle()
     try:
         with open(file_location, "rb") as file:
@@ -21,7 +21,7 @@ def _load_file(*, file_location: str) -> Any | None:
         return None
 
 
-def funnel(file_location: str, instance: Any | None = None) -> bool | None | Any:
+def funnel(file_location: str, instance: Optional[Any] = None) -> Any:
     if instance is None:
         return _load_file(file_location=file_location)
 
