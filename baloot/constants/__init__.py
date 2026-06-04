@@ -6,3 +6,4 @@ from .golden import golden
 from .sqrt2 import sqrt2
 from .sqrt3 import sqrt3
 from .sqrt5 import sqrt5
+from .c import c

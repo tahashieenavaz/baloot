@@ -48,5 +48,21 @@ def __getattr__(name):
         from .constants import golden
 
         return golden()
+    elif name == "sqrt2":
+        from .constants import sqrt2
+
+        return sqrt2()
+    elif name == "sqrt3":
+        from .constants import sqrt3
+
+        return sqrt3()
+    elif name == "sqrt5":
+        from .constants import sqrt5
+
+        return sqrt5()
+    elif name in {"c", "light", "speed-light"}:
+        from .constants import c
+
+        return c()
 
     raise AttributeError(name=name)
