@@ -4,7 +4,8 @@ from baloot.typing import TorchTensor
 
 def cot(x: TorchTensor) -> TorchTensor:
     torch = load_torch()
-    assert isinstance(
-        x, torch.Tensor
-    ), f"baloot.cot accepts torch.Tensor {type(x)} was given."
+
+    if isinstance(x, int):
+        x = torch.tensor(x)
+
     return 1.0 / torch.tan(x)
