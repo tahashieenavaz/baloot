@@ -20,6 +20,7 @@ from .reinforcement_learning import hard_update
 from .reinforcement_learning import hard_update_all
 from .tensors import shuffle
 from .tensors import antidiagonal
+from .tensors import trace
 
 
 def __getattr__(name):
