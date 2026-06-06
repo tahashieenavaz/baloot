@@ -1,5 +1,5 @@
 from typing import Any, Optional
-from baloot.helpers import load_pickle
+from baloot.loaders import load_pickle
 
 
 def _save_file(*, instance: Any, file_location: str) -> bool:

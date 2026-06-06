@@ -1,4 +1,4 @@
-from baloot.helpers import load_numpy
+from baloot.loaders import load_numpy
 
 
 def seed_numpy(seed: int) -> None:

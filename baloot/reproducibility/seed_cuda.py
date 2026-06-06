@@ -1,4 +1,4 @@
-from baloot.helpers import load_torch
+from baloot.loaders import load_torch
 
 
 def seed_cuda(seed: int) -> None:

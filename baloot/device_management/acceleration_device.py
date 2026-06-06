@@ -1,4 +1,4 @@
-from baloot.helpers import load_torch
+from baloot.loaders import load_torch
 
 
 def acceleration_device(return_all: bool = False):
