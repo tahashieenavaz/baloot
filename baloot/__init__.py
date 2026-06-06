@@ -9,7 +9,7 @@ from .file_management import funnel
 from .reproducibility import seed_python
 from .reproducibility import seed_torch
 from .reproducibility import seed_numpy
-from .reproducibility import seed_everything
+from .reproducibility import seed_everything, seed, set_seed
 from .triangular import cot
 from .triangular import arccot
 from .triangular import coth
