@@ -14,6 +14,7 @@ from .triangular import cot
 from .triangular import arccot
 from .triangular import coth
 from .triangular import arccoth
+from .triangular import haversin, haversine
 from .reinforcement_learning import soft_update
 from .reinforcement_learning import soft_update_all
 from .reinforcement_learning import hard_update
