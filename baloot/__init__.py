@@ -22,6 +22,8 @@ from .reinforcement_learning import hard_update_all
 from .tensors import shuffle
 from .tensors import antidiagonal
 from .tensors import trace
+from .tensors import k_smallest
+from .tensors import k_largest
 from .statistical import kurtosis
 from .statistical import excess_kurtosis
 from .statistical import statistical_moment
