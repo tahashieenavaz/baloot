@@ -5,7 +5,7 @@ from baloot.typing import TorchTensor
 def coth(x: TorchTensor) -> TorchTensor:
     torch = load_torch()
 
-    if isinstance(x, int):
+    if isinstance(x, (int, float)):
         x = torch.tensor(x)
 
     return 1.0 / torch.tanh(x)

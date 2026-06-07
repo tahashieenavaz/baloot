@@ -5,7 +5,7 @@ from baloot.typing import TorchTensor
 def arccot(x: TorchTensor | int) -> TorchTensor:
     torch = load_torch()
 
-    if isinstance(x, int):
+    if isinstance(x, (int, float)):
         x = torch.tensor(x)
 
     return (torch.pi / 2) - torch.arctan(x)
