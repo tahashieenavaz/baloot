@@ -23,6 +23,7 @@ from .tensors import shuffle
 from .tensors import antidiagonal
 from .tensors import trace
 from .tensors import k_smallest
+from .tensors import sinkhorn
 from .tensors import k_largest
 from .statistical import kurtosis
 from .statistical import excess_kurtosis
