@@ -1,4 +1,6 @@
 from baloot.loaders import load_torch
+from .cuda import cuda
+from .hip import hip
 
 
 def acceleration_device(return_all: bool = False):
@@ -6,7 +8,7 @@ def acceleration_device(return_all: bool = False):
     devices = []
 
     if torch.cuda.is_available():
-        devices.append(torch.device("cuda"))
+        devices.append(cuda())
 
     if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
         devices.append(torch.device("mps"))
@@ -15,7 +17,7 @@ def acceleration_device(return_all: bool = False):
         devices.append(torch.device("xpu"))
 
     if torch.version.hip is not None:
-        devices.append(torch.device("hip"))
+        devices.append(hip())
 
     try:
         import torch_xla.core.xla_model as xm
