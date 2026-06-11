@@ -3,6 +3,7 @@ from .cuda import cuda
 from .hip import hip
 from .mps import mps
 from .xpu import xpu
+from .cpu import cpu
 
 
 def acceleration_device(return_all: bool = False):
@@ -29,7 +30,7 @@ def acceleration_device(return_all: bool = False):
     except Exception:
         pass
 
-    devices.append(torch.device("cpu"))
+    devices.append(cpu())
 
     if return_all:
         return devices
