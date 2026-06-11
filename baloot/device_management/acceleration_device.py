@@ -4,6 +4,7 @@ from .hip import hip
 from .mps import mps
 from .xpu import xpu
 from .cpu import cpu
+from .xla import xla
 
 
 def acceleration_device(return_all: bool = False):
@@ -26,7 +27,7 @@ def acceleration_device(return_all: bool = False):
         import torch_xla.core.xla_model as xm
 
         xm.xla_device()
-        devices.append(torch.device("xla"))
+        devices.append(xla())
     except Exception:
         pass
 
