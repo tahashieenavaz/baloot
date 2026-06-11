@@ -1,6 +1,8 @@
 from baloot.loaders import load_torch
 from .cuda import cuda
 from .hip import hip
+from .mps import mps
+from .xpu import xpu
 
 
 def acceleration_device(return_all: bool = False):
@@ -11,10 +13,10 @@ def acceleration_device(return_all: bool = False):
         devices.append(cuda())
 
     if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-        devices.append(torch.device("mps"))
+        devices.append(mps())
 
     if hasattr(torch, "xpu") and torch.xpu.is_available():
-        devices.append(torch.device("xpu"))
+        devices.append(xpu())
 
     if torch.version.hip is not None:
         devices.append(hip())
