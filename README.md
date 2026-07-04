@@ -96,6 +96,8 @@ data = baloot.funnel("data.json")
 
 ### Triangular
 
+A few exotic triangular functions have been added to `Baloot` to complete already rich triangular API of PyTorch.
+
 ```python
 import baloot
 
@@ -106,8 +108,8 @@ baloot.coth(baloot.pi * 3 / 4)
 baloot.hacoversin(baloot.pi * 3 / 4)
 baloot.haversin(baloot.pi * 3 / 4)
 
-assert baloot.hacoversine(4) == baloot.hacoversin(4)
-assert baloot.haversine(4) == baloot.haversin(4)
+assert baloot.hacoversine == baloot.hacoversin
+assert baloot.haversine == baloot.haversin
 ```
 
 
