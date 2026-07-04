@@ -124,6 +124,17 @@ matrix = torch.randn(10, 10)
 baloot.antidiagonal(matrix)
 ```
 
+Batched trace operation:
+
+```python
+import torch
+import baloot
+
+matrices = torch.randn(10, 5, 5)
+traces = baloot.trace(matrices)
+assert traces.shape == (10, 1)
+```
+
 ## Copyright
 
 MIT License. Copyright (c) 2025 Taha Shieenavaz. See `LICENSE`.
