@@ -112,7 +112,17 @@ assert baloot.hacoversine == baloot.hacoversin
 assert baloot.haversine == baloot.haversin
 ```
 
+### Tensor Operations
 
+Anti-diagonal:
+
+```python
+import torch
+import baloot
+
+matrix = torch.randn(10, 10)
+baloot.antidiagonal(matrix)
+```
 
 ## Copyright
 
