@@ -135,6 +135,16 @@ traces = baloot.trace(matrices)
 assert traces.shape == (10, 1)
 ```
 
+## Citation
+
+```bibtex
+@software{nonlinear_github,
+  author  = {Shieenavaz, Taha},
+  title   = {Nonlinear: Deep Learning Activation Function Library},
+  url     = {https://github.com/tahashieenavaz/nonlinear},
+}
+```
+
 ## Copyright
 
 MIT License. Copyright (c) 2025 Taha Shieenavaz. See `LICENSE`.
