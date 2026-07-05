@@ -1,5 +1,7 @@
-from typing import Any, Optional
+from typing import Any
 from baloot.loaders import load_pickle
+
+_MISSING = object()
 
 
 def _save_file(*, instance: Any, file_location: str) -> bool:
@@ -21,8 +23,8 @@ def _load_file(*, file_location: str) -> Any:
         return None
 
 
-def funnel(file_location: str, instance: Optional[Any] = None) -> Any:
-    if instance is None:
+def funnel(file_location: str, instance: Any = _MISSING) -> Any:
+    if instance is _MISSING:
         return _load_file(file_location=file_location)
 
     return _save_file(instance=instance, file_location=file_location)
