@@ -5,6 +5,8 @@ if TYPE_CHECKING:
 
 TorchTensor: TypeAlias = Any
 TorchModule: TypeAlias = Any
+TorchOptimizer: TypeAlias = Any
+TorchDevice: TypeAlias = Any
 
 if TYPE_CHECKING:
     from torch import Tensor as _Tensor

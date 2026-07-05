@@ -30,6 +30,7 @@ from .statistical import kurtosis
 from .statistical import excess_kurtosis
 from .statistical import statistical_moment
 from .statistical import skewness
+from .speed import training_speed
 
 
 def __getattr__(name):
