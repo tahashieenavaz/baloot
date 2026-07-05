@@ -16,12 +16,12 @@ def training_speed(
 ) -> List[Tuple[TorchModule, float]]:
     torch = load_torch()
 
+    if optimizer is None:
+        optimizer = torch.optim.SGD
+
     assert isinstance(dummy_input, torch.Tensor)
     assert isinstance(device, torch.device)
     assert isinstance(optimizer, torch.optim.Optimizer)
-
-    if optimizer is None:
-        optimizer = torch.optim.SGD
 
     results = []
     dummy_input = dummy_input.to(device)
