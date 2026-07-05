@@ -138,10 +138,10 @@ assert traces.shape == (10, 1)
 ## Citation
 
 ```bibtex
-@software{nonlinear_github,
+@software{baloot_shieenavaz,
   author  = {Shieenavaz, Taha},
-  title   = {Nonlinear: Deep Learning Activation Function Library},
-  url     = {https://github.com/tahashieenavaz/nonlinear},
+  title   = {Baloot: Deep Learning Helper Library},
+  url     = {https://github.com/tahashieenavaz/baloot},
 }
 ```
 
