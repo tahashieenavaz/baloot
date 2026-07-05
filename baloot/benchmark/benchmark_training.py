@@ -5,7 +5,7 @@ from baloot.device_management import acceleration_device
 from baloot.typing import TorchModule, TorchTensor, TorchOptimizer, TorchDevice
 
 
-def training_speed(
+def benchmark_training(
     modules: List[TorchModule],
     dummy_input: TorchTensor,
     device: TorchDevice = acceleration_device(),
