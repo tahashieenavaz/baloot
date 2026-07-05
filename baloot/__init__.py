@@ -33,7 +33,7 @@ from .statistical import skewness
 from .benchmark import benchmark_training
 
 
-def __getattr__(name):
+def __getattr__(name: str):
     if name == "pi":
         from .constants import pi
 
