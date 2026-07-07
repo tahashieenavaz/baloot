@@ -22,7 +22,7 @@ def load_torch():
 def load_numpy():
     global _numpy_cache
     if _numpy_cache is not None:
-        _numpy_cache = numpy
+        return _numpy_cache
 
     try:
         import numpy
