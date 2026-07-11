@@ -9,6 +9,12 @@ def k_largest(
     index: bool = False,
     with_index: bool = False,
 ) -> TorchTensor:
+    if k <= 0:
+        raise ValueError("In `k_largest` k cannot be zero or negative.")
+
+    if k >= x.size(dim):
+        raise ValueError("In `k_largest` k cannot be bigger than the tensor.")
+
     topk_data = x.topk(dim=dim, k=k, largest=True, sorted=sorted)
 
     if index and with_index:
